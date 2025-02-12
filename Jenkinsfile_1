@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_PORT = '9090'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+        }
+    }
+}
